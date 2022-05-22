@@ -53,7 +53,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
 					showUnused: false,
 					folding: false,
 					lineNumbersMinChars: 3,
-					fontSize: 18,
+					fontSize: 16,
 					scrollBeyondLastLine: false,
 					automaticLayout: true,
 				}}
