@@ -7,6 +7,7 @@ const App: React.FC = () => {
 	const [code, setCode] = useState('');
 	const serviceRef = useRef<any>(null);
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
+	const iframeRef = useRef<HTMLIFrameElement>(null);
 
 	useEffect(() => {
 		textAreaRef?.current?.focus();
@@ -36,11 +37,25 @@ const App: React.FC = () => {
 			},
 		});
 		// console.log(result);
-		setCode(result.outputFiles[0].text);
+		// setCode(result.outputFiles[0].text);
+		iframeRef?.current?.contentWindow?.postMessage(
+			result.outputFiles[0].text,
+			'*'
+		);
 	};
 
 	const html = `
-		<script>${code}</script>
+		<html lang="en">
+		<head></head>
+		<body>
+			<div id="root"></div>
+		<script>
+			window.addEventListener('message', (e) => {
+				eval(e.data);
+			})
+		</script>
+		</body>
+		</html>
 	`;
 
 	return (
@@ -58,6 +73,7 @@ const App: React.FC = () => {
 				<button onClick={onSubmit}>Submit</button>
 				<pre>{code}</pre>
 				<iframe
+					ref={iframeRef}
 					srcDoc={html}
 					frameBorder='5'
 					sandbox='allow-scripts'
