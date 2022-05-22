@@ -19,10 +19,11 @@ export const fetchPlugin = (userInput: string) => {
 					};
 				}
 
-				// chack to see if file is in cache
+				// check to see if file is in cache
 				const chachedFile = await fileCache.getItem<esbuild.OnLoadResult>(
 					args.path
 				);
+
 				// if it is return the file from the cache
 				if (chachedFile) {
 					console.log('Fetched from cache!');
@@ -30,8 +31,10 @@ export const fetchPlugin = (userInput: string) => {
 				}
 				// if not fetch the file from unpkg and return it
 				const { data, request } = await axios.get(args.path); // contains the responseURL where unpkg redirected us to
+
+				const loader = args.path.match(/.css$/) ? 'css' : 'jsx';
 				const fetchedFile: esbuild.OnLoadResult = {
-					loader: 'jsx',
+					loader: loader,
 					contents: data,
 					resolveDir: new URL('./', request.responseURL).pathname,
 				};
