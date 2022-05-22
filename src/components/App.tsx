@@ -39,6 +39,10 @@ const App: React.FC = () => {
 		setCode(result.outputFiles[0].text);
 	};
 
+	const html = `
+		<script>${code}</script>
+	`;
+
 	return (
 		<>
 			<h1>jscode</h1>
@@ -53,6 +57,12 @@ const App: React.FC = () => {
 				<br />
 				<button onClick={onSubmit}>Submit</button>
 				<pre>{code}</pre>
+				<iframe
+					srcDoc={html}
+					frameBorder='5'
+					sandbox='allow-scripts'
+					style={{ display: 'block' }}
+				></iframe>
 			</div>
 		</>
 	);

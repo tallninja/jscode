@@ -8,3 +8,6 @@ Using [unpkg.com](https://unpkg.com) to include external libraries
 
 The requests are cached in indexedDB using [localforage](https://www.npmjs.com/package/localforage)
 
+User's code is executed inside an iframe element in order to provide some level of isolation from the user's browser. By default iframe element allows communication between the parent and the child using `parent` in the child and `\<iframe_element\>.contentWindow` from the parent.
+Iframes have sandbox property which allows communcation between the parent and child `sandbox="allow-same-origin"`. To sandbox the iframe we set the sandbox property to an empty string `sandbox=""`.
+Another way to disable communication is using a different port, domain name or protocol.
