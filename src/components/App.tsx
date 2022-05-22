@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as esbuild from 'esbuild-wasm';
-
-import { unpkgPathPlugin } from '../plugins/unpkg-path-plugin';
+import { unpkgPathPlugin, fetchPlugin } from '../plugins';
 
 const App: React.FC = () => {
 	const [input, setInput] = useState('');
@@ -30,7 +29,7 @@ const App: React.FC = () => {
 			entryPoints: ['index.js'],
 			bundle: true,
 			write: false,
-			plugins: [unpkgPathPlugin()],
+			plugins: [unpkgPathPlugin(), fetchPlugin(input)],
 			define: {
 				'process.env.NODE_ENV': '"production"',
 				global: 'window',
