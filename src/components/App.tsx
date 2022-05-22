@@ -51,7 +51,13 @@ const App: React.FC = () => {
 			<div id="root"></div>
 		<script>
 			window.addEventListener('message', (e) => {
+				try {
 				eval(e.data);
+				} catch (err) {
+					const root = document.querySelector("#root");
+					root.innerHTML = '<div style="color: red;"><h4>Error:</h4>' + err + '</div>';
+					console.error(err);
+				}
 			})
 		</script>
 		</body>
@@ -60,7 +66,7 @@ const App: React.FC = () => {
 
 	return (
 		<>
-			<h1>jscode</h1>
+			<h1>JScode</h1>
 			<div>
 				<textarea
 					ref={textAreaRef}
