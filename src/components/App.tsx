@@ -3,10 +3,13 @@ import CodeCell from './CodeCell';
 
 const App: React.FC = () => {
 	return (
-		<div>
-			<CodeCell />
-			<CodeCell />
-		</div>
+		<>
+			<h1>JScode</h1>
+			<div>
+				<CodeCell />
+				{/* <CodeCell /> */}
+			</div>
+		</>
 	);
 };
 

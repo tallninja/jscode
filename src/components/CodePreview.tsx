@@ -1,46 +1,50 @@
-import { useEffect, useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
-interface CodePreviewProps {
+interface PreviewProps {
 	code: string;
 }
 
 const html = `
-		<html lang="en">
-		<head></head>
-		<body>
-			<div id="root"></div>
-		<script>
-			window.addEventListener('message', (e) => {
-				try {
-				eval(e.data);
-				} catch (err) {
-					const root = document.querySelector("#root");
-					root.innerHTML = '<div style="color: red;"><h4>Error:</h4>' + err + '</div>';
-					console.error(err);
-				}
-			})
-		</script>
-		</body>
-		</html>
-	`;
+    <html>
+      <head>
+        <style>html { background-color: white; }</style>
+      </head>
+      <body>
+        <div id="root"></div>
+        <script>
+          window.addEventListener('message', (event) => {
+            try {
+              eval(event.data);
+            } catch (err) {
+              const root = document.querySelector('#root');
+              root.innerHTML = '<div style="color: red;"><h4>Runtime</h4>' + err + '</div>';
+              console.error(err);
+            }
+          }, false);
+        </script>
+      </body>
+    </html>
+  `;
 
-const CodePreview: React.FC<CodePreviewProps> = ({ code }) => {
-	const iframeRef = useRef<HTMLIFrameElement>(null);
+const CodePreview: React.FC<PreviewProps> = ({ code }) => {
+	const iframeRef = useRef<any>();
 
 	useEffect(() => {
-		if (iframeRef.current) iframeRef.current.srcdoc = html;
-		iframeRef?.current?.contentWindow?.postMessage(code, '*');
+		iframeRef.current.srcdoc = html;
+		setTimeout(() => {
+			iframeRef.current.contentWindow.postMessage(code, '*');
+		}, 50);
 	}, [code]);
 
 	return (
-		<iframe
-			title='Output'
-			ref={iframeRef}
-			srcDoc={html}
-			frameBorder='5'
-			sandbox='allow-scripts'
-			style={{ display: 'block' }}
-		></iframe>
+		<div className='preview-wrapper'>
+			<iframe
+				title='preview'
+				ref={iframeRef}
+				sandbox='allow-scripts'
+				srcDoc={html}
+			/>
+		</div>
 	);
 };
 
