@@ -4,7 +4,6 @@ import { unpkgPathPlugin, fetchPlugin } from '../plugins';
 
 const App: React.FC = () => {
 	const [input, setInput] = useState('');
-	const [code, setCode] = useState('');
 	const serviceRef = useRef<any>(null);
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
 	const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -26,6 +25,9 @@ const App: React.FC = () => {
 
 	const onSubmit = async () => {
 		if (!serviceRef.current) return;
+
+		if (iframeRef.current) iframeRef.current.srcdoc = html;
+
 		const result = await serviceRef?.current.build({
 			entryPoints: ['index.js'],
 			bundle: true,
@@ -77,8 +79,8 @@ const App: React.FC = () => {
 				></textarea>
 				<br />
 				<button onClick={onSubmit}>Submit</button>
-				<pre>{code}</pre>
 				<iframe
+					title='Output'
 					ref={iframeRef}
 					srcDoc={html}
 					frameBorder='5'
