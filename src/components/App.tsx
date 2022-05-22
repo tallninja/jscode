@@ -3,12 +3,13 @@ import * as esbuild from 'esbuild-wasm';
 import { unpkgPathPlugin, fetchPlugin } from '../plugins';
 
 import CodeEditor from './CodeEditor';
+import CodePreview from './CodePreview';
 
 const App: React.FC = () => {
 	const [input, setInput] = useState('');
+	const [code, setCode] = useState('');
 	const serviceRef = useRef<any>(null);
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
-	const iframeRef = useRef<HTMLIFrameElement>(null);
 
 	useEffect(() => {
 		textAreaRef?.current?.focus();
@@ -28,8 +29,6 @@ const App: React.FC = () => {
 	const onSubmit = async () => {
 		if (!serviceRef.current) return;
 
-		if (iframeRef.current) iframeRef.current.srcdoc = html;
-
 		const result = await serviceRef?.current.build({
 			entryPoints: ['index.js'],
 			bundle: true,
@@ -40,59 +39,20 @@ const App: React.FC = () => {
 				global: 'window',
 			},
 		});
-		// console.log(result);
-		// setCode(result.outputFiles[0].text);
-		iframeRef?.current?.contentWindow?.postMessage(
-			result.outputFiles[0].text,
-			'*'
-		);
+		setCode(result.outputFiles[0].text);
 	};
-
-	const html = `
-		<html lang="en">
-		<head></head>
-		<body>
-			<div id="root"></div>
-		<script>
-			window.addEventListener('message', (e) => {
-				try {
-				eval(e.data);
-				} catch (err) {
-					const root = document.querySelector("#root");
-					root.innerHTML = '<div style="color: red;"><h4>Error:</h4>' + err + '</div>';
-					console.error(err);
-				}
-			})
-		</script>
-		</body>
-		</html>
-	`;
 
 	return (
 		<>
 			<h1>JScode</h1>
 			<div>
 				<CodeEditor
-					initialValue="console.log('Hello World!')"
+					initialValue="console.log('Hello World!');"
 					onChange={(value) => setInput(value)}
 				/>
-				{/* <textarea
-					ref={textAreaRef}
-					cols={50}
-					rows={7}
-					value={input}
-					onChange={(e) => setInput(e.target.value)}
-				></textarea> */}
 				<br />
 				<button onClick={onSubmit}>Submit</button>
-				<iframe
-					title='Output'
-					ref={iframeRef}
-					srcDoc={html}
-					frameBorder='5'
-					sandbox='allow-scripts'
-					style={{ display: 'block' }}
-				></iframe>
+				<CodePreview code={code} />
 			</div>
 		</>
 	);
