@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import * as esbuild from 'esbuild-wasm';
 import { unpkgPathPlugin, fetchPlugin } from '../plugins';
 
+import CodeEditor from './CodeEditor';
+
 const App: React.FC = () => {
 	const [input, setInput] = useState('');
 	const serviceRef = useRef<any>(null);
@@ -70,13 +72,17 @@ const App: React.FC = () => {
 		<>
 			<h1>JScode</h1>
 			<div>
-				<textarea
+				<CodeEditor
+					initialValue="console.log('Hello World!')"
+					onChange={(value) => setInput(value)}
+				/>
+				{/* <textarea
 					ref={textAreaRef}
 					cols={50}
 					rows={7}
 					value={input}
 					onChange={(e) => setInput(e.target.value)}
-				></textarea>
+				></textarea> */}
 				<br />
 				<button onClick={onSubmit}>Submit</button>
 				<iframe
