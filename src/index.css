@@ -71,3 +71,99 @@
     left: 10px;
     color: red;
 }
+
+/* MARKDOWN EDITOR */
+
+.w-md-editor .title {
+    line-height: unset !important;
+    font-size: unset !important;
+    font-weight: unset !important;
+}
+
+.w-md-editor ul {
+    line-height: 1.0;
+}
+
+.text-cell .w-md-editor-bar svg {
+    display: none;
+}
+
+.text-cell .w-md-editor-bar {
+    background-repeat: no-repeat;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+    height: 11px;
+    cursor: row-resize;
+    background-color: #37414b;
+    background-position: 50%;
+    width: 100%;
+    position: relative;
+}
+
+.w-md-editor .title {
+    line-height: unset;
+    font-size: unset;
+    font-weight: unset;
+    color: #d4d4d4 !important;
+  }
+  
+  .w-md-editor ul {
+    line-height: 1;
+  }
+  
+  .text-cell .w-md-editor-bar svg {
+    display: none;
+  }
+  
+  .text-cell .w-md-editor-bar {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+    height: 11px;
+    cursor: row-resize;
+    background-color: #37414b;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    width: 100%;
+    position: relative;
+  }
+  
+  .text-cell em {
+    font-style: italic;
+  }
+  
+  .text-cell .wmde-markdown hr {
+    border-top: 1px solid #dee5ed;
+  }
+  
+  .text-cell .wmde-markdown ol {
+    list-style: decimal;
+  }
+  
+  .text-cell .w-md-editor-show-live {
+    /* Hide menu bar buttons to prevent accidental delete */
+    z-index: 20;
+  }
+  
+  .text-cell .w-md-editor-toolbar {
+    background-color: #37414b;
+    border-bottom: 1px solid gray;
+  }
+  
+  .text-cell .w-md-editor-toolbar li button {
+    color: #d4d4d4;
+  }
+  
+  .text-cell .w-md-editor-content {
+    background-color: #202123;
+  }
+  
+  .text-cell .w-md-editor,
+  .text-cell .w-md-editor .w-md-editor-text-pre {
+    color: #d4d4d4;
+  }
+  
+  .text-cell .w-md-editor-text-pre .bold {
+    color: unset;
+  }
+  
+  .text-cell .token.list.punctuation {
+    background-color: unset;
+  }
