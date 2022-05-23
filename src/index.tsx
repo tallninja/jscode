@@ -2,6 +2,8 @@ import 'bulmaswatch/slate/bulmaswatch.min.css';
 import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './state';
 
 import App from './components/App';
 
@@ -11,6 +13,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
 	<React.StrictMode>
-		<App />
+		<Provider store={store}>
+			<App />
+		</Provider>
 	</React.StrictMode>
 );
