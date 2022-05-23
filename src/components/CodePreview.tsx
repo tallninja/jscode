@@ -1,7 +1,8 @@
 import { useRef, useEffect } from 'react';
 
 interface PreviewProps {
-	code: string;
+	code: string | null;
+	err: string | null;
 }
 
 const html = `
@@ -12,13 +13,21 @@ const html = `
       <body>
         <div id="root"></div>
         <script>
+          const handleError = (err) => {
+            const root = document.querySelector('#root');
+            root.innerHTML = '<div style="color: red;"><h4>Error:</h4>' + err + '</div>';
+            console.error(err);
+          };
+          // handles asynchronous errors
+          window.addEventListener('error', (event) => {
+            event.preventDefault();
+            handleError(event.error);
+          })
           window.addEventListener('message', (event) => {
             try {
               eval(event.data);
             } catch (err) {
-              const root = document.querySelector('#root');
-              root.innerHTML = '<div style="color: red;"><h4>Runtime</h4>' + err + '</div>';
-              console.error(err);
+              handleError(err);
             }
           }, false);
         </script>
@@ -26,7 +35,7 @@ const html = `
     </html>
   `;
 
-const CodePreview: React.FC<PreviewProps> = ({ code }) => {
+const CodePreview: React.FC<PreviewProps> = ({ code, err }) => {
 	const iframeRef = useRef<any>();
 
 	useEffect(() => {
@@ -44,6 +53,7 @@ const CodePreview: React.FC<PreviewProps> = ({ code }) => {
 				sandbox='allow-scripts'
 				srcDoc={html}
 			/>
+			{err && <div className='bundling-error'>{err}</div>}
 		</div>
 	);
 };
