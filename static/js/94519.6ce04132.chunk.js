@@ -1,0 +1,2 @@
+(self.webpackChunkjscode=self.webpackChunkjscode||[]).push([[94519],{94519:function(){Prism.languages.t4=Prism.languages["t4-cs"]=Prism.languages["t4-templating"].createT4("csharp")}}]);
+//# sourceMappingURL=94519.6ce04132.chunk.js.map
