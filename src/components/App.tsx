@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CodeCell from './CodeCell';
 
 const App: React.FC = () => {

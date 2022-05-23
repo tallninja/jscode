@@ -8,11 +8,6 @@ const CodeCell: React.FC = () => {
 	const [input, setInput] = useState('');
 	const [code, setCode] = useState('');
 
-	const onSubmit = async () => {
-		const output = await bundle(input);
-		setCode(output);
-	};
-
 	useEffect(() => {
 		const timer = setTimeout(async () => {
 			const output = await bundle(input);

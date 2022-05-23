@@ -29,9 +29,9 @@ const Resizable: React.FC<ResizableProps> = ({ direction, children }) => {
 		return () => {
 			window.removeEventListener('resize', listener);
 		};
-	}, []);
+	}, [width]);
 
-	if (direction == 'vertical') {
+	if (direction === 'vertical') {
 		resizableProps = {
 			width: Infinity,
 			height: 300,

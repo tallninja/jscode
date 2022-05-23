@@ -1,4 +1,4 @@
-import * as esbuild from 'esbuild-wasm';
+import esbuild from 'esbuild-wasm';
 import axios from 'axios';
 import localForage from 'localforage';
 
