@@ -2,4 +2,6 @@ export * from './store';
 
 export * from './reducers';
 
-export * from './action-creators';
+export * from './cell';
+
+export * as actionCreators from './action-creators';
