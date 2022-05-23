@@ -13,16 +13,16 @@ const CellList = () => {
 	const renderedCells = cells?.length
 		? cells?.map((cell, idx) => (
 				<React.Fragment key={idx}>
-					<AddCell nextCellId={cell.id} />
 					<CellListItem cell={cell} />
+					<AddCell previousCellId={cell.id} />
 				</React.Fragment>
 		  ))
 		: null;
 
 	return (
 		<div>
+			<AddCell previousCellId={null} forceVisible={cells?.length === 0} />
 			{renderedCells}
-			<AddCell nextCellId={null} forceVisible={cells?.length === 0} />
 		</div>
 	);
 };

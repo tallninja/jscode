@@ -1,5 +1,4 @@
 import { useActionCreator } from '../hooks/useActionCreator';
-import { deleteCell } from '../state/action-creators';
 
 interface ActionBarProps {
 	id: string;

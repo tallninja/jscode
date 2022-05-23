@@ -1,5 +1,5 @@
 import { ActionType } from '../action-types';
-import { Cell, CellTypes, MoveCellDirection } from '../cell';
+import { CellTypes, MoveCellDirection } from '../cell';
 
 export interface DeleteCellAction {
 	type: ActionType.DELETE_CELL;
@@ -16,8 +16,8 @@ export interface MoveCellAction {
 	};
 }
 
-export interface InsertCellBeforeAction {
-	type: ActionType.INSERT_CELL_BEFORE;
+export interface InsertCellAfterAction {
+	type: ActionType.INSERT_CELL_AFTER;
 	payload: {
 		id: string | null;
 		type: CellTypes;
@@ -35,5 +35,5 @@ export interface UpdateCellAction {
 export type Action =
 	| DeleteCellAction
 	| MoveCellAction
-	| InsertCellBeforeAction
+	| InsertCellAfterAction
 	| UpdateCellAction;

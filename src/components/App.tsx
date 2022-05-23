@@ -1,6 +1,4 @@
 import React from 'react';
-import CodeCell from './CodeCell';
-import TextCell from './TextCell';
 import CellList from './CellList';
 
 const App: React.FC = () => {
