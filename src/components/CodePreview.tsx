@@ -20,7 +20,7 @@ const html = `
           };
           window.show = (data) => {
             const showResults = document.createElement('div');
-            showResults.innerHTML = '<pre>' + data + '</pre>';
+            showResults.innerHTML = '<pre>' + JSON.stringify(data) + '</pre>';
             document.body.appendChild(showResults);
           };
           // handles asynchronous errors
