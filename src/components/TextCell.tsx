@@ -46,7 +46,9 @@ const TextCell: React.FC<TextCellProps> = ({ cell }) => {
 	return (
 		<div className='text-cell card' onClick={() => setEditing(true)}>
 			<div className='card-content'>
-				<MDEditor.Markdown source={cell.content || 'Click to Edit'} />
+				<MDEditor.Markdown
+					source={cell.content || '# Hello World!\nClick to Edit'}
+				/>
 			</div>
 		</div>
 	);

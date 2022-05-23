@@ -18,6 +18,11 @@ const html = `
             root.innerHTML = '<div style="color: red;"><h4>Error:</h4>' + err + '</div>';
             console.error(err);
           };
+          window.show = (data) => {
+            const showResults = document.createElement('div');
+            showResults.innerHTML = '<pre>' + data + '</pre>';
+            document.body.appendChild(showResults);
+          };
           // handles asynchronous errors
           window.addEventListener('error', (event) => {
             event.preventDefault();
