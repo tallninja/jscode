@@ -37,7 +37,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
 			>
 				<Resizable direction='horizontal'>
 					<CodeEditor
-						initialValue={cell.content || 'show("Hello World!");'}
+						initialValue={cell.content}
 						onChange={(value) => updateCell(cell.id, value)}
 					/>
 				</Resizable>

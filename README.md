@@ -4,6 +4,8 @@ This is a web based editor for writting javascript code. Inspired by Jupyter Not
 
 Live Demo: [https://tallninja.github.io/jscode](https://tallninja.github.io/jscode)
 
+I have created a special `show()` function which displays data on the output window e.g `show('Hello World!')` prints `Hello World!` on the output screen on the right of the code editor.
+
 ## Instructions
 
 ### Prerequisites
