@@ -57,7 +57,7 @@ This will start a development server on your computer which you can access on [h
 
 ![home page](images/jscode1.png)
 
-You can now play aroun with the notebook.
+You can now play around with the notebook.
 
 ### Msc
 
